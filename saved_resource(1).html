@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://web-sandbox.oaiusercontent.com/? -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catflix — Stream the purrfect stories</title>
+<style>
+:root{
+  --bg:#090909; --panel:#151515; --panel2:#202020; --text:#f5f5f5;
+  --muted:#a7a7a7; --accent:#e50914; --gold:#ffd166;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+button,input{font:inherit}
+.nav{height:64px;display:flex;align-items:center;gap:28px;padding:0 5%;position:sticky;top:0;z-index:20;background:rgba(9,9,9,.96);border-bottom:1px solid #242424}
+.logo{font-size:28px;font-weight:900;color:var(--accent);letter-spacing:-1px}
+.nav a{color:#ddd;text-decoration:none;cursor:pointer}.nav a:hover{color:white}
+.search{margin-left:auto;background:#202020;border:1px solid #444;color:white;border-radius:6px;padding:9px 12px;width:220px}
+.hero{min-height:500px;padding:95px 7% 60px;display:flex;align-items:center;
+ background:radial-gradient(circle at 75% 35%,#6e2228 0,#291416 28%,transparent 60%),linear-gradient(90deg,#090909 25%,rgba(9,9,9,.55),#090909)}
+.hero-copy{max-width:650px}.tag{color:var(--gold);font-weight:bold}
+h1{font-size:clamp(42px,7vw,78px);margin:10px 0}.hero p{font-size:18px;line-height:1.6;color:#ddd}
+.btn{border:0;border-radius:6px;padding:12px 20px;font-weight:bold;cursor:pointer;margin-right:8px}
+.primary{background:white;color:#111}.secondary{background:#444;color:white}.btn:hover{transform:translateY(-1px)}
+main{padding:25px 5% 70px}.section{margin:32px 0}.section h2{margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+.card{background:var(--panel);border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;box-shadow:0 5px 18px #0008}
+.card:hover{transform:scale(1.03);background:var(--panel2)}
+.poster{height:255px;display:flex;align-items:flex-end;padding:14px;font-size:26px;font-weight:900;
+ background:linear-gradient(135deg,var(--c1),var(--c2))}
+.card-body{padding:12px}.card-body h3{margin:0 0 6px}.meta{color:var(--muted);font-size:13px}
+.badge{display:inline-block;background:var(--accent);padding:3px 6px;border-radius:3px;font-size:11px;font-weight:bold;margin-bottom:7px}
+.empty{display:none;color:var(--muted);padding:30px 0}
+footer{border-top:1px solid #222;padding:35px 5%;color:#777}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}.modal-box{max-width:650px;width:100%;background:#171717;border-radius:12px;overflow:hidden;box-shadow:0 20px 80px #000}
+.modal-poster{height:260px;padding:25px;display:flex;align-items:end;font-size:42px;font-weight:900;background:linear-gradient(135deg,#79222a,#171717)}
+.modal-content{padding:24px}.close{float:right;background:#333;color:white;border:0;border-radius:50%;width:34px;height:34px;cursor:pointer}
+@media(max-width:700px){.nav{gap:12px}.nav a{display:none}.search{width:145px}.hero{min-height:430px}.grid{grid-template-columns:repeat(2,1fr)}.poster{height:220px}}
+</style>
+<style>html,body,#root{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0;padding:0}html,body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Helvetica Neue,Arial,sans-serif!important}button,input,textarea,select{font-family:inherit}html{background-color:transparent}html.chatgptOled.dark,html.mobileSkybridge.dark{background-color:#000}@supports (font: -apple-system-body){html.mobileSkybridge{font:-apple-system-body}}html.desktopSkybridge.dark{background-color:#1e1e1e}html.desktopSkybridge [data-openai-titlebar]{padding-left:calc(8px + var(--openai-titlebar-left-inset, 0px));padding-right:8px}html.transparentSkybridgeBackground,html.transparentSkybridgeBackground.dark{background-color:transparent}html.androidSkybridge,html.androidSkybridge body,html.androidSkybridge *{-webkit-tap-highlight-color:rgba(255,255,255,0)}html.androidSkybridge *::selection,html.androidSkybridge *::-moz-selection{background:#fff0;color:inherit}</style></head>
+<body>
+<nav class="nav">
+  <div class="logo">CATFLIX</div>
+  <a onclick="showAll()">Home</a><a onclick="filter('Series')">Series</a><a onclick="filter('Movie')">Movies</a><a onclick="filter('Trending')">🔥 Trending</a>
+  <input id="search" class="search" placeholder="Search Catflix..." oninput="searchTitles()">
+</nav>
+
+<section class="hero">
+ <div class="hero-copy">
+  <div class="tag">CATFLIX ORIGINAL</div>
+  <h1>GRAVITY CATS</h1>
+  <p>Two kittens arrive in a strange little town where nothing is normal. Mystery, monsters, portals... and one very suspicious triangular cat.</p>
+  <button class="btn primary" onclick="openTitle('Gravity Cats')">▶ Watch now</button>
+  <button class="btn secondary" onclick="openTitle('Gravity Cats')">ⓘ More info</button>
+ </div>
+</section>
+
+<main>
+ <section class="section">
+  <h2 id="heading">🔥 Trending on Catflix</h2>
+  <div id="grid" class="grid"><article class="card" onclick="openTitle('Gravity Cats')">
+  <div class="poster" style="--c1:#503080;--c2:#101a38">🐱🌀</div>
+  <div class="card-body"><span class="badge">TOP 3</span><h3>Gravity Cats</h3><div class="meta">Series • 2026 • Mystery • Comedy</div></div>
+ </article><article class="card" onclick="openTitle('Catformers')">
+  <div class="poster" style="--c1:#9a4c16;--c2:#252525">🐱🤖</div>
+  <div class="card-body"><span class="badge">TOP 3</span><h3>Catformers</h3><div class="meta">Series • 2026 • Action • Comedy</div></div>
+ </article><article class="card" onclick="openTitle('Jurassic Paws')">
+  <div class="poster" style="--c1:#23653a;--c2:#101b10">🐱🦖</div>
+  <div class="card-body"><span class="badge">TOP 3</span><h3>Jurassic Paws</h3><div class="meta">Series • 2026 • Adventure • Comedy</div></div>
+ </article><article class="card" onclick="openTitle('Stranger Paws')">
+  <div class="poster" style="--c1:#8b1728;--c2:#181818">🐾👁️</div>
+  <div class="card-body"><h3>Stranger Paws</h3><div class="meta">Series • 2026 • Mystery • Sci-Fi</div></div>
+ </article><article class="card" onclick="openTitle('Breaking Meow')">
+  <div class="poster" style="--c1:#c28a18;--c2:#263b18">🧪🐈</div>
+  <div class="card-body"><h3>Breaking Meow</h3><div class="meta">Series • 2026 • Comedy • Crime</div></div>
+ </article><article class="card" onclick="openTitle('Star Paws')">
+  <div class="poster" style="--c1:#162b75;--c2:#080812">🚀🐱</div>
+  <div class="card-body"><h3>Star Paws</h3><div class="meta">Series • 2026 • Space • Adventure</div></div>
+ </article><article class="card" onclick="openTitle('Ghostpaws')">
+  <div class="poster" style="--c1:#4b3b79;--c2:#121212">👻🐾</div>
+  <div class="card-body"><h3>Ghostpaws</h3><div class="meta">Movie • 2026 • Supernatural • Comedy</div></div>
+ </article><article class="card" onclick="openTitle('Paw Heist')">
+  <div class="poster" style="--c1:#176a58;--c2:#151515">😼💰</div>
+  <div class="card-body"><h3>Paw Heist</h3><div class="meta">Movie • 2026 • Action • Comedy</div></div>
+ </article><article class="card" onclick="openTitle('The Meowtrix')">
+  <div class="poster" style="--c1:#075b42;--c2:#101010">🐱💻</div>
+  <div class="card-body"><h3>The Meowtrix</h3><div class="meta">Movie • 2026 • Sci-Fi • Action</div></div>
+ </article><article class="card" onclick="openTitle('Sherlock Paws')">
+  <div class="poster" style="--c1:#71512a;--c2:#211b13">🔎🐈</div>
+  <div class="card-body"><h3>Sherlock Paws</h3><div class="meta">Series • 2026 • Mystery</div></div>
+ </article></div>
+  <div id="empty" class="empty" style="display: none;">No cats found. Try another search! 🐱</div>
+ </section>
+</main>
+
+<footer>© 2026 Catflix • A fan-made original streaming universe • Meow responsibly.</footer>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modal-box">
+  <div id="modalPoster" class="modal-poster"><button class="close" onclick="closeModal()">×</button><span id="modalTitle"></span></div>
+  <div class="modal-content">
+   <h2 id="modalName"></h2><p id="modalDesc"></p><p class="meta" id="modalMeta"></p>
+   <button class="btn primary" onclick="alert('Demo player coming soon! 🐱🎬')">▶ Play</button>
+   <button class="btn secondary" onclick="closeModal()">Close</button>
+  </div>
+ </div>
+</div>
+
+<script>
+const titles=[
+ {name:"Gravity Cats",type:"Series",year:"2026",genre:"Mystery • Comedy",trend:true,emoji:"🐱🌀",c1:"#503080",c2:"#101a38",desc:"Dipper and Mabel Paws discover that their summer vacation in Gravity Cats is anything but normal."},
+ {name:"Catformers",type:"Series",year:"2026",genre:"Action • Comedy",trend:true,emoji:"🐱🤖",c1:"#9a4c16",c2:"#252525",desc:"Cats discover they can transform into absurd machines, creatures and... sometimes sloths."},
+ {name:"Jurassic Paws",type:"Series",year:"2026",genre:"Adventure • Comedy",trend:true,emoji:"🐱🦖",c1:"#23653a",c2:"#101b10",desc:"A scientific experiment brings dinosaurs back—and the cats have to deal with them."},
+ {name:"Stranger Paws",type:"Series",year:"2026",genre:"Mystery • Sci-Fi",emoji:"🐾👁️",c1:"#8b1728",c2:"#181818",desc:"A strange signal leads a group of kittens to a world hiding underneath their town."},
+ {name:"Breaking Meow",type:"Series",year:"2026",genre:"Comedy • Crime",emoji:"🧪🐈",c1:"#c28a18",c2:"#263b18",desc:"A science teacher and his cat partner get into far more trouble than either expected."},
+ {name:"Star Paws",type:"Series",year:"2026",genre:"Space • Adventure",emoji:"🚀🐱",c1:"#162b75",c2:"#080812",desc:"Rebel kittens face the Feline Empire and its terrifyingly powerful laser pointer."},
+ {name:"Ghostpaws",type:"Movie",year:"2026",genre:"Supernatural • Comedy",emoji:"👻🐾",c1:"#4b3b79",c2:"#121212",desc:"Three cats discover that their new house has some very unusual roommates."},
+ {name:"Paw Heist",type:"Movie",year:"2026",genre:"Action • Comedy",emoji:"😼💰",c1:"#176a58",c2:"#151515",desc:"A team of cats plans the world's most ridiculous heist: stealing the legendary Golden Fish."},
+ {name:"The Meowtrix",type:"Movie",year:"2026",genre:"Sci-Fi • Action",emoji:"🐱💻",c1:"#075b42",c2:"#101010",desc:"One cat learns that reality may be much stranger than the cardboard box he lives in."},
+ {name:"Sherlock Paws",type:"Series",year:"2026",genre:"Mystery",emoji:"🔎🐈",c1:"#71512a",c2:"#211b13",desc:"The world's most curious cat investigates impossible cases around the neighborhood."}
+];
+
+function card(t){
+ return `<article class="card" onclick="openTitle('${t.name.replace(/'/g,"\\'")}')">
+  <div class="poster" style="--c1:${t.c1};--c2:${t.c2}">${t.emoji}</div>
+  <div class="card-body">${t.trend?'<span class="badge">TOP 3</span>':''}<h3>${t.name}</h3><div class="meta">${t.type} • ${t.year} • ${t.genre}</div></div>
+ </article>`;
+}
+function render(list=titles){document.getElementById('grid').innerHTML=list.map(card).join('');document.getElementById('empty').style.display=list.length?'none':'block'}
+function showAll(){document.getElementById('heading').textContent='🔥 Trending on Catflix';render(titles)}
+function filter(type){document.getElementById('heading').textContent=type==='Trending'?'🔥 Top 3 on Catflix':type+' on Catflix';render(type==='Trending'?titles.filter(t=>t.trend).slice(0,3):titles.filter(t=>t.type===type))}
+function searchTitles(){let q=document.getElementById('search').value.toLowerCase().trim();document.getElementById('heading').textContent=q?'🔎 Search results':'🔥 Trending on Catflix';render(q?titles.filter(t=>(t.name+' '+t.genre+' '+t.desc).toLowerCase().includes(q)):titles)}
+function openTitle(name){let t=titles.find(x=>x.name===name);if(!t)return;document.getElementById('modalTitle').textContent=t.emoji;document.getElementById('modalName').textContent=t.name;document.getElementById('modalDesc').textContent=t.desc;document.getElementById('modalMeta').textContent=`${t.type} • ${t.year} • ${t.genre}`;document.getElementById('modalPoster').style.background=`linear-gradient(135deg,${t.c1},${t.c2})`;document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+render();
+</script>
+
+</body></html>
