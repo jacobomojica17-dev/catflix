@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catflix</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #090909;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #000;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 25px;
+        }
+
+        .hero {
+            padding: 100px 60px;
+            background: linear-gradient(90deg, #111, #35151a);
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 500px;
+            color: #ccc;
+        }
+
+        button {
+            background: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 30px 50px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1b1b1b;
+            width: 200px;
+            padding-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .poster {
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            background: linear-gradient(135deg, #493276, #111);
+        }
+
+        .card h3 {
+            padding: 0 15px;
+        }
+
+        .card p {
+            padding: 0 15px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CATFLIX</div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Series</a>
+        <a href="#">Movies</a>
+        <a href="#">Top 3</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>GRAVITY CATS</h1>
+
+    <p>
+        Two kittens arrive in a mysterious town where strange things
+        happen every day.
+    </p>
+
+    <button onclick="alert('Gravity Cats is coming soon! 🐱')">
+        ▶ WATCH NOW
+    </button>
+</section>
+
+<section class="content">
+
+    <h2>🔥 Top 3 on Catflix</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="poster">🌀🐱</div>
+            <h3>Gravity Cats</h3>
+            <p>Series • Mystery</p>
+        </div>
+
+        <div class="card">
+            <div class="poster">🤖🐱</div>
+            <h3>Catformers</h3>
+            <p>Series • Comedy</p>
+        </div>
+
+        <div class="card">
+            <div class="poster">🦖🐱</div>
+            <h3>Jurassic Paws</h3>
+            <p>Series • Adventure</p>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
